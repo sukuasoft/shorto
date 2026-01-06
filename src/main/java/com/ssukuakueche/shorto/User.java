@@ -40,6 +40,12 @@ public class User {
 
 class UserRepository {
     protected static ArrayList<User> items = new ArrayList<>();
+    protected static int lastIndex = 0;
+
+    static int generateId(){
+        lastIndex++;
+        return lastIndex;
+    }
 
 
    static  int count (){
@@ -52,8 +58,8 @@ class UserRepository {
 
     static ArrayList<User> getAll (){
         return  items;
-
     }
+
     static User get (int userId) throws Exception {
 
 
@@ -80,10 +86,51 @@ class UserRepository {
 
         items.remove(user);
     }
+
+    static  User update (int id, UpdateUserDto data) throws Exception {
+       User user = get(id);
+
+       user.email = data.getEmail();
+       user.password = data.getPassword();
+       user.name = data.getName();
+       return user;
+    }
 }
 
 
 class  CreateUserDto {
+    private String name;
+    private String email;
+    private   String password;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+}
+
+
+class UpdateUserDto {
     private String name;
     private String email;
     private   String password;
