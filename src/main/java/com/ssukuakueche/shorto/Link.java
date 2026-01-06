@@ -96,6 +96,19 @@ class LinkRepository {
         return links;
     }
 
+    public static  Link getByShorted  (String shorted) throws Exception {
+
+        Link link  = null;
+
+        for (Link item: items){
+            if(item.shorted.equals(shorted)) link = item;
+        }
+
+        if(link == null)  throw new Exception("Link not found");
+
+        return link;
+    }
+
     public static Link get (int linkId) throws Exception{
 
         Link link = null;
@@ -107,7 +120,7 @@ class LinkRepository {
 
 
         if(link == null){
-            throw new Exception("User not found");
+            throw new Exception("Link not found");
         }
 
         return link;
