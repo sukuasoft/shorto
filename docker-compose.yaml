@@ -1,0 +1,16 @@
+services:
+  postgres:
+    container_name: postgres-shorto
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=shorto
+    volumes:
+      - shorto_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+
+volumes:
+  shorto_postgres_data:
